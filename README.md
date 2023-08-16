@@ -1,3 +1,5 @@
+<img width="2032" alt="Screenshot of the Figma Plugin exporting the Figma Variables to CSS Variables snippets" src="https://github.com/craftzing/fft-example-figma-variables/assets/2844485/59ce21be-35de-457d-8d36-eaf5ff61f56b">
+
 # Example: Figma Variables to CSS Variables plugin
 
 Can be used with the figma file from the FfT presentation:  
