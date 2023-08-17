@@ -44,7 +44,7 @@ function convertVariableSetCollectionToCSS(variableSetCollection: VariableSetCol
     if (Object.prototype.hasOwnProperty.call(variableSetCollection, collectionName)) {
       // get variableSets and sort them so non MQ sets go first.
       const variableSets = variableSetCollection[collectionName].sort((a, b) => Number(!!a.mediaQuery.value) - Number(!!b.mediaQuery.value));
-      output += `// ${collectionName}\n${variableSets.map(convertVariableSetToCSS).join('')}`;
+      output += `/* ${collectionName} */\n${variableSets.map(convertVariableSetToCSS).join('')}`;
     }
   }
 
@@ -91,7 +91,7 @@ function processCollection(collections: VariableCollection[]) {
         if (typeof value === 'object' && 'type' in value && value.type === 'VARIABLE_ALIAS') {
           const alias = figma.variables.getVariableById(value.id);
           if (!alias) return;
-          variableSet.variables[variableName] = normalizeToCSSVariableName(alias.name);
+          variableSet.variables[variableName] = `var(${normalizeToCSSVariableName(alias.name)})`;
           return
         }
 
@@ -112,9 +112,6 @@ function processCollection(collections: VariableCollection[]) {
   
   return variableSetCollection;
 }
-
-
-
 
 function rgbToHex({ r, g, b, a }: any) {
   if (a !== 1) {
